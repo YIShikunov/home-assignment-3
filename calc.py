@@ -1,7 +1,7 @@
 import re
 from decimal import *
 
-ERRMSG = "Please enter a valid request.\n"
+ERROR_MESSAGE = "Please enter a valid expression.\n"
 matchfloat = "(-?\d+(?:\.\d+)?)"
 
 def factor(a):
@@ -20,7 +20,7 @@ def divis(a, b):
 	try:
 		return str(Decimal(a) / Decimal(b))
 	except	ZeroDivisionError:
-		return ERRMSG
+		return ERROR_MESSAGE
 def sum(a, b):
 	return str(Decimal(a) + Decimal(b))
 	
@@ -35,7 +35,7 @@ operations = {
 
 def calculate(request):	
 	setcontext(BasicContext)
-	response = ERRMSG
+	response = ERROR_MESSAGE
 	regexpCalc = re.compile("^" + matchfloat + "([+*\-/]{1})" + matchfloat + "$")
 	regexpFactor = re.compile("^(\d+)!$")
 	m = regexpCalc.match(request)		

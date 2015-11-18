@@ -1,14 +1,14 @@
 import calc
 
-def prompt():
+def main_loop():
 	try:
 		while True:
-			request = raw_input("Enter 2 numbers and operation (like 2+2.4 or 1/5).\nAvailable: +,-,*,/\nOr enter one integer and operation \"!\"(like 5!)\nCtrl+D to quit\n")
+			request = raw_input("This program can calculate basic binary operations(*/+-) as well as factorial\nExmaples:\n-1+1\n1--2\n5!\nCtrl+D or Ctrl+C to quit\n")
 			print calc.calculate(request)		
-	except Exception:
-		print "Bye!"
 	except KeyboardInterrupt:
 		print "Bye!"
+	except EOFError:
+		print "See you!"
 
 if __name__ == "__main__":
-	prompt()
+	main_loop()

@@ -47,7 +47,7 @@ class CalculatorTestCase(unittest.TestCase):
 		self.assertEqual(r, ERRMSG)
 		
 	def test_wrong_operator(self):
-		r = calculate("8.0$3")
+		r = calculate("2.4$3")
 		self.assertEqual(r, ERRMSG)
 		
 	def test_text(self):
