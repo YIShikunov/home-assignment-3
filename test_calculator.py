@@ -33,6 +33,10 @@ class CalculatorTestCase(unittest.TestCase):
 	def test_factor_wrong(self):
 		r = calculate("5.0!")
 		self.assertEqual(r, ERRMSG)
+	
+	def test_factor_zero(self):
+		r = calculate("0!")
+		self.assertEqual(r, 1)
 		
 	def test_div_zero(self):
 		r = calculate("1.0/0.0")
