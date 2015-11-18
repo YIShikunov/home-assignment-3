@@ -29,7 +29,11 @@ def calculate(request):
 			if m:
 				response = operation(*m.groups())
 				break
-	except:
+	except KeyboardInterrupt:
+		pass
+	except ZeroDivisionError:
+		pass
+	except EOFError:
 		pass
 	return response
 	
