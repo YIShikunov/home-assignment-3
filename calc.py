@@ -1,8 +1,8 @@
 import re
+from decimal import *
 
 ERRMSG = "Please enter a valid request.\n"
-matchnum = "(-?\d+(?:\.\d+)?)"
-matchposnum = "(\d+)"
+matchfloat = "(-?\d+(?:\.\d+)?)"
 
 def factor(a):
 	res = 1
@@ -13,23 +13,37 @@ def factor(a):
 		res *= i
 	return res
 
-operations = [
-(lambda a, b: float(a) + float(b), re.compile('^' + matchnum + "\+" + matchnum + '$')),
-(lambda a, b: float(a) - float(b), re.compile('^' + matchnum + "\-" + matchnum + '$')),
-(lambda a, b: float(a) * float(b), re.compile('^' + matchnum + "\*" + matchnum + '$')),
-(lambda a, b: float(a) / float(b), re.compile('^' + matchnum + "/"  + matchnum + '$')),
-(factor, re.compile("^(\d+)!$"))
-]
-
-def calculate(request):		
-	response = ERRMSG
+def mult(a, b):
+	return str(Decimal(a) * Decimal(b))
+	
+def divis(a, b):
 	try:
-		for operation, regexp in operations:
-			m = regexp.match(request)		
-			if m:
-				response = operation(*m.groups())
-				break
-	except ZeroDivisionError:
-		pass
+		return str(Decimal(a) / Decimal(b))
+	except	ZeroDivisionError:
+		return ERRMSG
+def sum(a, b):
+	return str(Decimal(a) + Decimal(b))
+	
+def sub(a, b):
+	return str(Decimal(a) - Decimal(b))
+
+operations = {
+"+" : sum, 
+"-" : sub,
+"/" : divis,
+"*" : mult}	
+
+def calculate(request):	
+	setcontext(BasicContext)
+	response = ERRMSG
+	regexpCalc = re.compile("^" + matchfloat + "([+*\-/]{1})" + matchfloat + "$")
+	regexpFactor = re.compile("^(\d+)!$")
+	m = regexpCalc.match(request)		
+	if m:
+		response = operations[m.groups()[1]](m.groups()[0],m.groups()[2])
+	else:
+		m = regexpFactor.match(request)
+		if m:
+			response = factor(m.groups()[0])
 	return response
 	

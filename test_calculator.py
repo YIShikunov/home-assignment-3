@@ -8,23 +8,23 @@ class CalculatorTestCase(unittest.TestCase):
     
 	def test_fractions_add(self):
 		r = calculate("3.04+-4.04")
-		self.assertEqual(r, -1.0)
+		self.assertEqual(r, '-1.00')
 
 	def test_fractiond_sub(self):
 		r = calculate("3.04--4.06")
-		self.assertEqual(r, 7.1)
+		self.assertEqual(r, '7.10')
 		
 	def test_fractons_div(self):
-		r = calculate("5.6/4.3")
-		self.assertEqual(r, 5.6/4.3)
+		r = calculate("6.6/3.3")
+		self.assertEqual(r, '2')
 	
 	def test_div_negative(self):
-		r = calculate("5.6/-4.3")
-		self.assertEqual(r, -5.6/4.3)
+		r = calculate("6.6/-3.3")
+		self.assertEqual(r, '-2')
 		
 	def test_mul_negatives(self):
 		r = calculate("-4*-11")
-		self.assertEqual(r, 44)
+		self.assertEqual(r, '44')
 		
 	def test_factor_correct(self):
 		r = calculate("5!")
