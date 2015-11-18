@@ -7,6 +7,8 @@ def prompt():
 			print calc.calculate(request)		
 	except Exception:
 		print "Bye!"
+	except KeyboardInterrupt:
+		print "Bye!"
 
 if __name__ == "__main__":
 	prompt()
