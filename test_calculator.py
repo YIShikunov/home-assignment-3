@@ -10,7 +10,7 @@ class CalculatorTestCase(unittest.TestCase):
 		r = calculate("3.04+-4.04")
 		self.assertEqual(r, '-1.00')
 
-	def test_fractiond_sub(self):
+	def test_fractions_sub(self):
 		r = calculate("3.04--4.06")
 		self.assertEqual(r, '7.10')
 		
@@ -24,6 +24,10 @@ class CalculatorTestCase(unittest.TestCase):
 		
 	def test_mul_negatives(self):
 		r = calculate("-4*-11")
+		self.assertEqual(r, '44')
+		
+	def test_fractions_mov(self):
+		r = calculate("4*11")
 		self.assertEqual(r, '44')
 		
 	def test_factor_correct(self):
