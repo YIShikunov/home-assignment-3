@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from calc import calculate, ERRMSG
+from calc import calculate, ERROR_MESSAGE
 
 
 class CalculatorTestCase(unittest.TestCase):
@@ -32,7 +32,7 @@ class CalculatorTestCase(unittest.TestCase):
 		
 	def test_factor_wrong(self):
 		r = calculate("5.0!")
-		self.assertEqual(r, ERRMSG)
+		self.assertEqual(r, ERROR_MESSAGE)
 	
 	def test_factor_zero(self):
 		r = calculate("0!")
@@ -40,29 +40,21 @@ class CalculatorTestCase(unittest.TestCase):
 		
 	def test_div_zero(self):
 		r = calculate("1.0/0.0")
-		self.assertEqual(r, ERRMSG)
+		self.assertEqual(r, ERROR_MESSAGE)
 		
 	def test_multiple_operand(self):
 		r = calculate("1/2-4")
-		self.assertEqual(r, ERRMSG)
+		self.assertEqual(r, ERROR_MESSAGE)
 		
 	def test_wrong_operator(self):
 		r = calculate("2.4$3")
-		self.assertEqual(r, ERRMSG)
+		self.assertEqual(r, ERROR_MESSAGE)
 		
 	def test_text(self):
 		r = calculate("hello world two plus two")
-		self.assertEqual(r, ERRMSG)
-		
-	def test_weird_line(self):
-		r = calculate("\n\r\t\s")
-		self.assertEqual(r, ERRMSG)
+		self.assertEqual(r, ERROR_MESSAGE)
 		
 	def test_spaces(self):
 		r = calculate("3 - 3")
-		self.assertEqual(r, ERRMSG)
-	
-	def test_multiple_decimals(self):
-		r = calculate("1.2.3-3.4.5")
-		self.assertEqual(r, ERRMSG)
+		self.assertEqual(r, ERROR_MESSAGE)
 		
